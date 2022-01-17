@@ -1,0 +1,79 @@
+plugins {
+    id "java"
+    id "eclipse"
+    id "org.jetbrains.gradle.plugin.idea-ext" version "0.9"
+    id "java-library"
+    id "io.freefair.lombok" version "5.3.0"
+    id "io.qameta.allure" version "2.8.1"
+}
+
+group 'com.split.bill'
+version '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'io.qameta.allure'
+apply plugin: 'io.freefair.lombok'
+
+def jupiterVersion = "5.7.2"
+def allureVersion = "2.15.0"
+
+dependencies {
+
+    configurations {
+        testCompile
+    }
+
+    // JUnit 5 Runtime dependencies
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${jupiterVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}"
+
+    implementation 'com.codeborne:selenide:5.25.1'
+    implementation 'org.assertj:assertj-core:3.22.0'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+
+    // Allure dependencies
+    implementation "io.qameta.allure:allure-junit5:${allureVersion}"
+    implementation "io.qameta.allure:allure-selenide:${allureVersion}"
+    implementation group: "io.qameta.allure", name: "allure-commandline", version: "${allureVersion}", ext: "pom"
+
+    allure {
+        version = allureVersion
+        autoconfigure = true
+        aspectjweaver = true
+
+        useJUnit5 {
+            version = allureVersion
+        }
+    }
+
+    tasks.withType(Test) {
+
+        useJUnitPlatform {}
+
+        testLogging {
+            showStandardStreams = true
+            events "passed", "skipped", "failed"
+            exceptionFormat = "full"
+        }
+
+        reports {
+            html.enabled(true)
+        }
+
+//    doLast {
+//        allureReport
+//    }
+
+        test.outputs.upToDateWhen { false }
+    }
+}

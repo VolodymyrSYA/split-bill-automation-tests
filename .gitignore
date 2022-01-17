@@ -21,3 +21,46 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+*.log
+/lombok.config
+/**/temp
+target/
+*/target/
+.idea/
+.gradle/
+.allure/
+allure-report/
+build/
+*.iml
+.DS_Store
+allure-results/
+tokens
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/bin/
+
+### VS Code ###
+.vscode/
+
+### Scala ###
+.metals/
+.bloop/

@@ -40,6 +40,8 @@ dependencies {
     implementation 'com.codeborne:selenide:5.25.1'
     implementation 'org.assertj:assertj-core:3.22.0'
     implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'org.aspectj:aspectjweaver:1.9.7'
+    implementation "org.slf4j:slf4j-simple:1.7.32"
 
     // Allure dependencies
     implementation "io.qameta.allure:allure-junit5:${allureVersion}"

@@ -72,10 +72,6 @@ dependencies {
             html.enabled(true)
         }
 
-//    doLast {
-//        allureReport
-//    }
-
         test.outputs.upToDateWhen { false }
     }
 }

@@ -2,10 +2,11 @@ package com.split.bill.testdata;
 
 import com.github.javafaker.Faker;
 import com.split.bill.models.UserData;
+import io.qameta.allure.Step;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public final class UserDataGeneration {
+public final class UserDataGenerator {
 
     public static final String GMAIL_DOMAIN_NAME = "@gmail.com";
     public static final int MINIMUM_PASSWORD_LENGTH = 8;
@@ -13,11 +14,12 @@ public final class UserDataGeneration {
 
     private final Faker faker;
 
+    @Step("Generate user data")
     public UserData generateUserData() {
         final String userName = faker.name().username();
         return UserData.builder().userEmail(userName.concat(GMAIL_DOMAIN_NAME)).userName(userName)
                 .password(faker.internet().password(MINIMUM_PASSWORD_LENGTH, MAXIMUM_PASSWORD_LENGTH,
-                        true, true))
+                        true, true) + "!")
                 .build();
     }
 

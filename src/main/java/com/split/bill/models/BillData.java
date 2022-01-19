@@ -1,18 +1,15 @@
 package com.split.bill.models;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 @Builder
-public final class EventData {
+public final class BillData {
 
-    private final String eventTitle;
+    private String billName;
 
-    private final String eventDate;
+    private String billTotalCostData;
 
-    @Override
-    public String toString() {
-        return String.format("Event title - '%s', event name - '%s'", eventTitle, eventDate);
-    }
+    private final BillProduct billProduct;
 }

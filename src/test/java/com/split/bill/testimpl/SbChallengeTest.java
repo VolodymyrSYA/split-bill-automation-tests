@@ -1,4 +1,4 @@
-package com.split.bill.registration;
+package com.split.bill.testimpl;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Screenshots;
